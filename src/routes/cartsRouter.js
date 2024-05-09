@@ -87,7 +87,7 @@ router.put('/:cid', async(req,res)=>{
         })
     }
 
-    //not sure if needed due to regex (test more & decide)
+    //future improvement:not sure if needed anymore due to regex (test more & decide)
     if (typeof newCartDetails !== 'object'){
         return res.status(400).json({
             error: 'Invalid format in request body',
@@ -95,7 +95,7 @@ router.put('/:cid', async(req,res)=>{
         });
     }
     
-    //not sure if needed due to regex (test more & decide)
+    //future improvement:not sure if needed due to regex (test more & decide)
     if (Object.keys(newCartDetails).length === 0) {
         return res.status(400).json({
             error: 'Empty request body',
@@ -251,8 +251,6 @@ router.delete('/:cid/products/:pid', async(req,res)=>{
         return res.status(400).json({error:`The Product ID# provided is not an accepted Id Format in MONGODB database. Please verify your Product ID# and try again`})
     }
 
-    // faltan validaciones -- is product in cart ? is cart valid,? is product valid?
-
     try {
         let deletedProductInCart = await cartManager.deleteProductInCart(cid,pid)
         console.log(deletedProductInCart)
@@ -267,10 +265,6 @@ router.delete('/:cid/products/:pid', async(req,res)=>{
             message: `${error.message}`
         })
     }
-
-
-
-
-
-
 })
+
+// **future improvment: keep adding/strengthen validations is product in cart ? is cart valid,? is product valid? etc over delete endpoints
