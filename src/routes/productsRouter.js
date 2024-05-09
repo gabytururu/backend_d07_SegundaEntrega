@@ -179,7 +179,7 @@ router.delete('/:id', async(req,res)=>{
 
     try {
         let deletedProduct = await productManager.deleteProduct(id)
-        console.log(deleteResult)
+        console.log('here is the delete result', deletedProduct)
         res.setHeader('Content-type', 'application/json');
         return res.status(200).json({
             payload:deletedProduct

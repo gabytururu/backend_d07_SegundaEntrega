@@ -21,12 +21,9 @@
                                 {{!-- <ul> --}}
                                     {{!-- {{#each this.products}} --}}
                                     {{#each products}}
-                                        <p>Producto: {{pid.title}}</p>
-                                        <p>Id#{{pid._id}}</p>
-                                        <p>price ${{pid.price}}</p>
-                                        <p>code#{{pid.code}}</p>
-                                        
-                                        <p><strong>Cantidad:</strong> {{this.qty}}</p>                                 
+                                        <p>{{pid.title}}</p>                        
+                                        <p><span><strong>price</strong> ${{pid.price}}<strong> Cantidad:</strong>{{this.qty}}</span></p>
+                                        <hr class="line">                               
                                     {{/each}}
                                 {{!-- </ul> --}}
                             {{!-- </li> --}}

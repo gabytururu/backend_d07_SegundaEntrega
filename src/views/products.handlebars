@@ -22,25 +22,23 @@
         </div>       
         <h3>Productos Disponibles:</h3>
         <div class="productsList">
-            <ul class="ul">
+            {{!-- <ul class="ul"> --}}
                 {{#each products}}
                     <div class="productCard">
                         <div class="resultsliContainer">
-                            <li><strong>{{_id}}:</strong></li>
-                            <li><strong>{{title}}:</strong> {{description}}</li>
-                            <li><strong>Code:</strong> {{code}}</li>
-                            <li><strong>stock disponible:</strong>{{stock}}</li>
-                            <li><strong>Precio:</strong> ${{price}}</li>
+                            <p><strong>{{title}}</strong></p>
+                            <p><small>{{_id}}:</small></p>
+                            <div><img src='{{thumbnails}}' width="150px"/></div>
+                            <p>{{description}}</p>
+                            <p><strong>Precio:</strong> ${{price}}</p>
                         </div>
                         <div class="buybuttonContainer">
-{{!-- 
-                            fyi was just id and just changed to _id!!! check if works bfore sending --}}
                                 <button class="checkDetails" onClick="checkProductDetails('{{_id}}')">Ver Detalles</button>
                                 <button class="buyButton" onClick="addProdToCart('{{title}} con id#{{_id}}')">comprar</button>                    
                         </div>
                     </div>
                 {{/each}}
-            </ul>
+            {{!-- </ul> --}}
         </div>    
     </div>
 </div>

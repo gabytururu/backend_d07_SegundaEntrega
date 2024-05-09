@@ -1,7 +1,7 @@
 .mainContainer{    
     background-color: white;
     padding: 30px;
-    width: 70vw;
+    width: 80vw;
     margin:auto
 }
 
@@ -41,10 +41,10 @@ h2{
     padding: 25px
 }
 
-.resultsContainer{
+/* .resultsContainer{
     background-color: red;
     display: flex;
-}
+} */
 
 .productsContainer{
     border: solid 1px rgb(189, 189, 189);
@@ -54,6 +54,20 @@ h2{
     flex-direction: column;
     align-items: center;
     padding:20px
+}
+
+
+.navLink{
+    background-color:#fff9b5;
+    padding:4px;
+    border-radius:4px;
+    margin:15px;
+    color:black;
+    border: 1.5px solid gray 
+}
+.navLink:hover{
+    background-color:#fdf493;
+    color: black
 }
 
 .productsContainer h3{
@@ -66,56 +80,83 @@ h2{
 
 .productsList{
     background-color: #3399ff;
+    /* background-color: #fafccb; */
     display: flex; 
-    flex-direction: column;
-    width: 90%;
+    /* flex-direction: column; */
+    width: 70%;
     padding: 30px;
     border-radius: 5px;
+    flex-wrap: wrap ;
+    justify-content: space-around;
+    /* margin:15px */
 }
-.ul{
+/* .ul{
     width: 100%;
     margin: 0;
     padding:0
-}
+} */
 
 .productCard{
     background-color: rgb(218, 238, 255);
+   
     padding:15px;
+    flex-basis: calc(40% - 15px);
     margin-bottom: 10px;
     border-radius: 5px;
-    border-left:solid 5px #000080;
-    display: flex;
-    justify-content: space-between
+    /* border-bottom:solid 5px #fdb44b; */
+    border-top:solid 5px #000080;
+    border-bottom:solid 5px #000080;
+    /* display: flex; */
+    justify-content: center
 }
 
 .resultsliContainer{
-    width: 75%;
+    /* width: 100%; */
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Gill Sans', sans-serif;
     /* background-color: red; */
 }
-.productCard li{
+/* .productCard li{
     list-style: none;
     font-family: 'Gill Sans', sans-serif;
    
+} */
+.buybuttonContainer{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding:10px
 }
 
-.buttonContainer{
-    width:20%;
-    /* background-color: purple; */
-    border-radius: 50%;
-    display: block;
-    align-items: center;
-    justify-content:center
+.checkDetails{
+    border-radius: 5px;
+    padding: 10px;
+    /* width:25%; */
 }
+
 
 .buyButton{
-   height: 60%;
-   border-radius: 60%;
+   /* height: 60%; */
+   border-radius: 5px;
+   padding: 10px;
+   /* width:25%; */
    /* background-color: rgba(238, 232, 170, 0); */
   /* border: none */
     
 }
 
+.line{
+    height:1px;
+    width: 35%;
+    color:#000080;
+    border-style: dashed
+}
 
+ /* ------------ CHAT ------------ */
 .mensajesInput {
     background-color:#000080;
     border-radius:5px;
@@ -167,16 +208,3 @@ h2{
 }
 
 
-
-.navLink{
-    background-color:#fff9b5;
-    padding:4px;
-    border-radius:4px;
-    margin:15px;
-    color:black;
-    border: 1.5px solid gray 
-}
-.navLink:hover{
-    background-color:#fdf493;
-    color: black
-}

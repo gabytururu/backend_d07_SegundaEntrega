@@ -198,6 +198,7 @@ router.put('/:cid/products/:pid', async(req,res)=>{
         }
     }
 
+    //future improvement - seek for proper method (change +1 for +N even on first iteration)
     try{
         const updatedCart = await cartManager.updateCart(cid,pid)
         res.setHeader('Content-type', 'application/json')

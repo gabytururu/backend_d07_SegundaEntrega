@@ -1,18 +1,28 @@
-<div class="navButtons">
-    <a href="/carts" class="href">Volver a Carritos</a>
-    <a href="/" class="href">Ir a Home</a>
+<div class="mainContainer">
+    <div class="titles">
+        <h1>Detalles de tu Carrito</h1>
+        <div class="navButtons">
+            <a href="/carts" class="href">Volver a Carritos</a>
+            <a href="/" class="href">Ir a Home</a>
+        </div>
+    </div>
 </div>
-<div class="productCard">
-    <h2>El Carrito: {{matchingCart._id}}</h2>
-    <div class="resultsliContainer">
-        {{#each matchingCart.products}}
-            <li><strong>El cart Product:</strong> {{pid.title}}</li>
-            <li><strong>Description:</strong> {{pid.description}}</li>
-            <li><strong>Price:</strong> {{pid.price}}</li>
-            <li><strong>Code:</strong> {{pid.code}}</li>
-            <li><strong>Category:</strong> {{pid.category}}</li>
-            <li><strong>Stock:</strong> {{pid.stock}}</li>
-            <li><strong>Quantity:</strong> {{qty}}</li>
-        {{/each}}
+<div class="productsContainer">       
+    <div class="productsList">
+        <div class="productCard">
+            <h2>El Carrito: {{matchingCart._id}}</h2>
+            <div class="resultsliContainer">
+                {{#each matchingCart.products}}
+                    <p><strong>{{pid.title}}</strong></p>
+                    <p>{{pid.description}}</p>
+                    <p><strong>Price:</strong> {{pid.price}}</p>
+                    <p><strong>Code:</strong> {{pid.code}}</p>
+                    <p><strong>Category:</strong> {{pid.category}}</p>
+                    <p><strong>Stock:</strong> {{pid.stock}}</p>
+                    <p><strong>Quantity:</strong> {{qty}}</p>
+                    <hr class="line"> 
+                {{/each}}
+            </div>
+        </div>
     </div>
 </div>

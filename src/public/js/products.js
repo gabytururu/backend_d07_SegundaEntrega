@@ -17,7 +17,7 @@ const checkProductDetails=(_id)=>{
 
 const finalizePurchase = (_id) =>{
     Swal.fire({
-        text: `El producto id#${_id} fue comprado`,
+        text: `El producto id#${_id} fue agregado al carrito`,
         toast: true,
         position: "center"
     })

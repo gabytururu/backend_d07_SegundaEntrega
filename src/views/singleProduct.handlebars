@@ -1,18 +1,30 @@
-<div class="navButtons">
-    <a href="/products" class="href">Volver a Productos</a>
-    <a href="/" class="href">Ir a Home</a>
-</div>
- 
-<div class="productCard">
-    <div class="resultsliContainer">
-        <li><strong>{{matchingProduct.title}}:</strong> {{matchingProduct.description}}</li>
-        <li><strong>Code:</strong> {{matchingProduct.code}}</li>
-        <li><strong>stock disponible:</strong>{{matchingProduct.stock}}</li>
-        <li><strong>Precio:</strong> ${{matchingProduct.price}}</li>
+<div class="mainContainer">
+    <div class="titles">
+        <h1>Detalles del Producto</h1>
+        <div class="navButtons">
+            <a href="/products" class="href">Volver a Productos</a>
+            <a href="/" class="href">Ir a Home</a>
+        </div>
     </div>
-    {{!-- just changed id to _id .. see if keeps working --}}
-    <div class="buybuttonContainer">
-        <button class="buyButton" onClick="finalizePurchase('{{matchingProduct._id}}')">comprar</button>        
+</div>
+    <div class="productsContainer">
+        <div class="productsList">
+            <div class="productCard">
+                <div class="resultsliContainer single">
+                    <p><strong>{{matchingProduct.title}}:</strong> </p>
+                    <div><img src='{{matchingProduct.thumbnails}}'/></div>
+                    <p>{{matchingProduct.description}}</p>
+                    <p><strong>Categoria:</strong>{{matchingProduct.category}}</p>
+                    <p><strong>Code:</strong> {{matchingProduct.code}}</p>
+                    <p><strong>stock disponible:</strong>{{matchingProduct.stock}} piezas</p>
+                    <p><strong>Precio:</strong> ${{matchingProduct.price}}</p>
+                </div>
+                {{!-- just changed id to _id .. see if keeps working --}}
+                <div class="buybuttonContainer">
+                    <button class="buyButton" onClick="finalizePurchase('{{matchingProduct._id}}')">comprar</button>        
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
