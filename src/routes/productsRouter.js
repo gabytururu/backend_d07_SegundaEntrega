@@ -8,14 +8,14 @@ const productManager = new ProductManager()
 router.get('/',async(req,res)=>{
     let {pagina, limit, sort, ...query}=req.query;
 
-    if (!pagina) pagina=1
+    if (!pagina) pagina=1;
     if (!limit) limit=10;
-    if (sort) sort= {price:sort}
+    if (sort) sort= {price:sort};
     if (query.category) query.category = query.category;
     if (query.stock === "disponible") query.stock = { $gt: 0 };
    
     try{
-        let {docs,totalPages,prevPage,nextPage,page,hasPrevPage,hasNextPage }= await productManager.getProducts(query,{pagina, limit, sort})
+        let {docs,totalPages,prevPage,nextPage,page,hasPrevPage,hasNextPage }= await productManager.getProducts(query,{pagina, limit, sort});
         res.setHeader('Content-type', 'application/json');
         return res.status(200).json({
             status: 'success',
@@ -28,9 +28,8 @@ router.get('/',async(req,res)=>{
             hasNextPage,
             prevLink: hasPrevPage ? `localhost:8080/api/products?pagina=${prevPage}` : 'No previous page available',
             nextLink: hasNextPage ? `localhost:8080/api/products?pagina=${nextPage}` : 'No next page available'
-        })
+        });
     }catch(error){
-        console.log(error)
         res.setHeader('Content-type', 'application/json');
         return res.status(500).json({
             status: 'Error',
@@ -49,8 +48,7 @@ router.get('/:id',async(req,res)=>{
     }
 
     try{
-        let matchingProduct = await productManager.getProductByFilter({_id:id}).lean()
-       //let matchingProduct = await productManager.findOne({_id:id}).lean()
+        let matchingProduct = await productManager.getProductByFilter({_id:id})
         res.setHeader('Content-type', 'application/json');
         return res.status(200).json({payload: matchingProduct})
     }catch(error){

@@ -73,9 +73,21 @@ router.post('/', async(req,res)=>{
 router.put('/:cid', async(req,res)=>{
     let {cid} = req.params;
     let newCartDetails = req.body
-    console.log('el newCartDetails del req.body:',newCartDetails)
 
-   // empty body validation
+    if(!isValidObjectId(cid)){
+        res.setHeader('Content-type', 'application/json');
+        return res.status(400).json({error:`The Cart ID# provided is not an accepted Id Format in MONGODB database. Please verify your Cart ID# and try again`})
+    }
+
+    let cartIsValid = await cartManager.getCartById(cid)
+    if(!cartIsValid){
+        res.setHeader('Content-type', 'application/json');
+        return res.status(400).json({
+            error: `ERROR: Cart id# provided is not valid`,
+            message: `Failed to replace the content in cart due to invalid argument: The Cart id provided (id#${cid}) does not exist in our database. Please verify and try again`
+        })
+    }
+
     if (Object.keys(newCartDetails).length === 0) {
         return res.status(400).json({
             error: 'Empty request body',
@@ -84,10 +96,10 @@ router.put('/:cid', async(req,res)=>{
     }
 
     //formato incorrecto (ej envia un objeto solo, o envia datos incompletos etc
-   
-      // faltan validaciones (is cid valid?, is newcartDetails valid structure ? etc)  
-
-      
+    // faltan validaciones ( is newcartDetails valid structure ? etc)  
+    //cuando mando un  objeto incompleto (ej . {qty:20} sin pid) lo carga aasi -- corregir
+    // si mando un array con objeto vacio dentro me da el error original (q entoria se liberaba con objectKeys  [{}])
+    // si no mando nada (ni array ni objeto -- revienta )
     try{
         let cartEditDetails = await cartManager.replaceCart(cid,newCartDetails)
         res.setHeader('Content-type', 'application/json')

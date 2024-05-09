@@ -21,22 +21,17 @@ router.get('/',async(req,res)=>{
 })
 
 router.get('/products',async(req,res)=>{
-    let {pagina, limit, sort, query}=req.query
-    if(!pagina) pagina=1
-    
+    let {pagina, limit, sort, ...query}=req.query
+
+    if (!pagina) pagina=1;
+    if (!limit) limit=10;
+    if (sort) sort= {price:sort};
+    if (query.category) query.category = query.category;
+    if (query.stock === "disponible") query.stock = { $gt: 0 };
+
 
     try{
-        let {docs:products,page,totalPages, hasPrevPage, hasNextPage, prevPage,nextPage} = await productManager.getProducts({page:pagina,limit,sort,query})
-        console.log({
-            docs:products,
-            page,
-            totalPages, 
-            hasPrevPage, 
-            hasNextPage, 
-            prevPage,
-            nextPage}
-        )
-        console.log({products,page,totalPages, hasPrevPage, hasNextPage, prevPage,nextPage})
+        let {docs:products,page,totalPages, hasPrevPage, hasNextPage, prevPage,nextPage} = await productManager.getProducts(query,{pagina,limit,sort})
         res.setHeader('Content-type', 'text/html');
         res.status(200).render('products',{
             products,
