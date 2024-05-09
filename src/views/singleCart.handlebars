@@ -1,0 +1,18 @@
+<div class="navButtons">
+    <a href="/carts" class="href">Volver a Carritos</a>
+    <a href="/" class="href">Ir a Home</a>
+</div>
+<div class="productCard">
+    <h2>El Carrito: {{matchingCart._id}}</h2>
+    <div class="resultsliContainer">
+        {{#each matchingCart.products}}
+            <li><strong>El cart Product:</strong> {{pid.title}}</li>
+            <li><strong>Description:</strong> {{pid.description}}</li>
+            <li><strong>Price:</strong> {{pid.price}}</li>
+            <li><strong>Code:</strong> {{pid.code}}</li>
+            <li><strong>Category:</strong> {{pid.category}}</li>
+            <li><strong>Stock:</strong> {{pid.stock}}</li>
+            <li><strong>Quantity:</strong> {{qty}}</li>
+        {{/each}}
+    </div>
+</div>

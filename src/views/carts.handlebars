@@ -1,0 +1,44 @@
+<div class="mainContainer">
+    <div class="titles">
+        <h1>Repositorio de Carritos</h1>
+         <div class="navButtons">
+            <a href="/" class="href">Ir a Home</a>
+            <a href="/products" class="href">Ver Productos</a>
+            <a href="/chat" class="href">Ir al Chat</a>
+            {{!-- <a href="/realTime" class="href">Ir a Catálogo En Vivo (Realtime!)</a> --}}
+        </div>
+    </div>
+    <div class="productsContainer">         
+        <h3>Carritos Existentes:</h3>
+        <div class="productsList">
+             {{!-- <ul> --}}
+            {{#each carts}}
+                    <div class="productCard">
+                        <div class="resultsliContainer">
+                            {{!-- <li> --}}
+                                <h3>Carrito #{{_id}}</h3>
+                                <strong>Productos en el Carrito:</strong>
+                                {{!-- <ul> --}}
+                                    {{!-- {{#each this.products}} --}}
+                                    {{#each products}}
+                                        <p>Producto: {{pid.title}}</p>
+                                        <p>Id#{{pid._id}}</p>
+                                        <p>price ${{pid.price}}</p>
+                                        <p>code#{{pid.code}}</p>
+                                        
+                                        <p><strong>Cantidad:</strong> {{this.qty}}</p>                                 
+                                    {{/each}}
+                                {{!-- </ul> --}}
+                            {{!-- </li> --}}
+                        </div>
+                        <div class="buybuttonContainer">
+                             <button class="checkDetails" onClick="checkCartDetails('{{_id}}')">Ver Detalles</button>
+                        </div>
+                        
+                    </div>
+                {{/each}}
+            {{!-- </ul> --}}
+        </div>    
+    </div>
+</div>
+<script src="/js/carts.js"></script>

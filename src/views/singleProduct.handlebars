@@ -1,0 +1,20 @@
+<div class="navButtons">
+    <a href="/products" class="href">Volver a Productos</a>
+    <a href="/" class="href">Ir a Home</a>
+</div>
+ 
+<div class="productCard">
+    <div class="resultsliContainer">
+        <li><strong>{{matchingProduct.title}}:</strong> {{matchingProduct.description}}</li>
+        <li><strong>Code:</strong> {{matchingProduct.code}}</li>
+        <li><strong>stock disponible:</strong>{{matchingProduct.stock}}</li>
+        <li><strong>Precio:</strong> ${{matchingProduct.price}}</li>
+    </div>
+    {{!-- just changed id to _id .. see if keeps working --}}
+    <div class="buybuttonContainer">
+        <button class="buyButton" onClick="finalizePurchase('{{matchingProduct._id}}')">comprar</button>        
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/products.js"></script>

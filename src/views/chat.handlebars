@@ -1,0 +1,26 @@
+
+<div class="mainContainer">
+    <div class="titles">
+        <h1>Chat de la Tienda</h1>
+         <div class="navButtons">
+            <a href="/" class="href">Ir a Home</a>
+            <a href="/products" class="href">Ver Productos</a>
+            <a href="/carts" class="href">Ver Carritos</a>
+            {{!-- <a href="/realTime" class="href">Ir a Catálogo En Vivo (Realtime!)</a> --}}
+        </div>
+    </div>
+    <div class="productsContainer">         
+    <div class="productsList">      
+        <div class="mensajesInput">
+            <label class="msjLabel" for="mensaje">Tu Mensaje:</label>
+            <input type="text" class="mensaje">
+        </div>
+        <div class="mensajesOutput">
+            <div class="mensajes"></div>
+        </div>
+    </div>    
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="socket.io/socket.io.js"></script>
+<script src="/js/chat.js"></script>

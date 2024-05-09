@@ -1,0 +1,182 @@
+.mainContainer{    
+    background-color: white;
+    padding: 30px;
+    width: 70vw;
+    margin:auto
+}
+
+.titles{
+    text-align: center;
+    margin-bottom: 30px;
+    padding:30px
+}
+
+h1{
+    font-size: 40px;
+    font-family: 'Verdana';
+}
+
+h2{
+    font-size: 20px;
+    font-family: 'Verdana';
+}
+
+.href{
+    background-color: #003366;
+    padding:20px;
+    text-decoration: none;
+    color: white;
+    font-family: 'Gill Sans', sans-serif;
+    border-radius: 8px;
+    font-size:18px
+}
+
+.href:hover{
+    color: #fff68f;
+    font-size:18.5px
+}
+
+.navButtons{
+    margin: 20px;
+    padding: 25px
+}
+
+.resultsContainer{
+    background-color: red;
+    display: flex;
+}
+
+.productsContainer{
+    border: solid 1px rgb(189, 189, 189);
+    background-color: #f5f5f5;
+    border-radius:8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding:20px
+}
+
+.productsContainer h3{
+    margin:50px 0px 30px 0px;
+    color: #000080;
+    font-family: 'Gill Sans', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+}
+
+.productsList{
+    background-color: #3399ff;
+    display: flex; 
+    flex-direction: column;
+    width: 90%;
+    padding: 30px;
+    border-radius: 5px;
+}
+.ul{
+    width: 100%;
+    margin: 0;
+    padding:0
+}
+
+.productCard{
+    background-color: rgb(218, 238, 255);
+    padding:15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border-left:solid 5px #000080;
+    display: flex;
+    justify-content: space-between
+}
+
+.resultsliContainer{
+    width: 75%;
+    /* background-color: red; */
+}
+.productCard li{
+    list-style: none;
+    font-family: 'Gill Sans', sans-serif;
+   
+}
+
+.buttonContainer{
+    width:20%;
+    /* background-color: purple; */
+    border-radius: 50%;
+    display: block;
+    align-items: center;
+    justify-content:center
+}
+
+.buyButton{
+   height: 60%;
+   border-radius: 60%;
+   /* background-color: rgba(238, 232, 170, 0); */
+  /* border: none */
+    
+}
+
+
+.mensajesInput {
+    background-color:#000080;
+    border-radius:5px;
+    padding:10px;
+    display: flex;   
+    align-items: center;
+    height:5vh
+
+}
+.mensaje{
+    border: 1px solid #555;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: wheat;
+    /* margin-top: 5px; */
+    width: 100%;
+    height: 90%
+}
+
+.msjLabel{
+    color: white;
+    text-align: center;
+}
+
+.mensajesOutput {
+    background-color: #a4ccf3;
+    padding: 15px;
+    
+}
+
+.mensajes{
+    display:inline-block;
+    /* flex-direction: column; */
+    /* margin-top: 15px; */
+    width: 100%;
+    height: 350px;
+    overflow-y: scroll;
+    box-shadow: 0px 0px 5px #333 inset;
+    padding: 5px;
+    background-color: rgb(147, 232, 235);
+}
+
+.mensajePush{
+    /* margin:2px; */
+    background-color: wheat;
+    padding: 5px;
+    border: 1px solid gray;
+    border-radius: 5px
+}
+
+
+
+.navLink{
+    background-color:#fff9b5;
+    padding:4px;
+    border-radius:4px;
+    margin:15px;
+    color:black;
+    border: 1.5px solid gray 
+}
+.navLink:hover{
+    background-color:#fdf493;
+    color: black
+}
