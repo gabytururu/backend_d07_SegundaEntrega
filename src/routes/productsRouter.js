@@ -193,7 +193,6 @@ router.delete('/:id', async(req,res)=>{
     }
 })
 
-
 // router.get("*",(req,res)=>{
 //     res.setHeader('Content-Type','application/json');
 //     res.status(404).json({

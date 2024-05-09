@@ -86,7 +86,6 @@ router.get('/carts',async(req,res)=>{
     
 })
 
-
 router.get('/carts/:cid',async(req,res)=>{
     let {cid} = req.params
    
@@ -104,7 +103,6 @@ router.get('/carts/:cid',async(req,res)=>{
     }
     
 })
-
 
 router.get('/chat',async(req,res)=>{
     res.status(200).render('chat')

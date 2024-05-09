@@ -69,7 +69,6 @@ router.post('/', async(req,res)=>{
     }
 })
 
-//pisa el carrito (products existente y lo sustituye por este)
 router.put('/:cid', async(req,res)=>{
     let {cid} = req.params;
     let newCartDetails = req.body
@@ -88,18 +87,43 @@ router.put('/:cid', async(req,res)=>{
         })
     }
 
+    //not sure if needed due to regex (test more & decide)
+    if (typeof newCartDetails !== 'object'){
+        return res.status(400).json({
+            error: 'Invalid format in request body',
+            message: `Failed to replace the content in the cart id#${cid} due to invalid format request. Please make sure the products you submit are in a valid JSON format.`
+        });
+    }
+    
+    //not sure if needed due to regex (test more & decide)
     if (Object.keys(newCartDetails).length === 0) {
         return res.status(400).json({
             error: 'Empty request body',
             message: `Failed to replace the content in the cart id#${cid} due to incomplete request. Please submit the products you want to push to replace the cart content.`
         });
     }
-
-    //formato incorrecto (ej envia un objeto solo, o envia datos incompletos etc
-    // faltan validaciones ( is newcartDetails valid structure ? etc)  
-    //cuando mando un  objeto incompleto (ej . {qty:20} sin pid) lo carga aasi -- corregir
-    // si mando un array con objeto vacio dentro me da el error original (q entoria se liberaba con objectKeys  [{}])
-    // si no mando nada (ni array ni objeto -- revienta )
+    
+    const newCartDetailsString = JSON.stringify(newCartDetails)
+    const regexValidFormat = /^\[\{.*\}\]$/;
+    if(!regexValidFormat.test(newCartDetailsString)){
+        console.log(regexValidFormat)
+        return res.status(400).json({
+            error: 'Invalid format in request body',
+            message:  `Failed to replace the content in the cart id#${cid} due to invalid format request. Please make sure the products you submit are in a valid JSON format (Alike array with objects: [{...content}]).`
+        });
+    }
+    
+    const keys = Object.keys(newCartDetails)
+    if(keys.length>0){
+        const bodyFormatIsValid = keys.every(key=> 'pid' in newCartDetails[key] && 'qty' in newCartDetails[key])
+        if(!bodyFormatIsValid){
+            return res.status(400).json({
+                error: 'Missing properties in body',
+                message: `Failed to replace the content in the cart id#${cid} due to incomplete request (missing properties). All products in cart must have a "pid" and a "qty" property to be accepted. Please verify and try again.`
+            });
+        }
+    }
+    
     try{
         let cartEditDetails = await cartManager.replaceCart(cid,newCartDetails)
         res.setHeader('Content-type', 'application/json')
@@ -118,6 +142,7 @@ router.put('/:cid', async(req,res)=>{
 router.put('/:cid/products/:pid', async(req,res)=>{
     let {cid, pid} = req.params
     let {qty} = req.body
+    let body = req.body
     
     if(!isValidObjectId(cid)){
         res.setHeader('Content-type', 'application/json');
@@ -146,6 +171,17 @@ router.put('/:cid/products/:pid', async(req,res)=>{
             message: `Failed to update cart due to invalid argument: The Cart id provided (id#${cid}) does not exist in our database. Please verify and try again`
         })
     }
+
+    // see if can improve/simplify UX logic (eg. allow for null OR [] OR {} to result in +1 instead of error)
+    let regexValidBodyFormat = /^\{.*\}$/
+    let fullBody = JSON.stringify(req.body)
+    if(!regexValidBodyFormat.test(fullBody)){    
+        return res.status(400).json({
+            error: 'Invalid format in request body',
+            message:  `Failed to increase requested qty of product id#${pid} in cart id#${cid} due to invalid format request. Quantities can only be increased by 1 (leaving the body or the object empty) or by notifying the quantity to add, through a valid JSON format (Alike simple object: {"qty":x} )`
+        })
+    }
+
 
     let productAlreadyInCart = await cartManager.findProductInCart(cid,pid) 
     if(productAlreadyInCart){
