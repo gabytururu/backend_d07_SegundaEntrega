@@ -1,0 +1,55 @@
+1. es válido utilizar multiples try/catch para distintas validaciones
+que involucran la db.. o es me jor poner todo dentro de un solo 
+try catch
+
+2.si tengo varios try catch.. es valido costumizar el error
+del server para saber en cual fase ocurrio? .. es decir
+en todos los casos es un error 500 (catch) ... pero si son
+identicos como identifico donde esta fallando
+
+3.esta ok mezclar try/catch con ifs o deben ir primero
+todos las validaciones no dependientes de la db y luego
+todas las de la db (try/catch)
+
+4. en el desafio piden que al get le agreguemos (ademas del payload)
+el status (ej success error) .. y a los errore mensajes
+todas las respuestas debieran llevar status (ej success error)
+y mensajes de error costumizado? o es un overkill hacer eso=
+
+5. esta ok poner entonces el res.setHeader siempre al principio?
+
+6. deben ir todas las validaciones en un try/catch?? o es valido 
+ponerlas fuejar con un condicional typico por ej: 
+ const matchingCart = await cartManager.getCartById(cid) 
+    if(!matchingCart){
+        res.setHeader('Content-type', 'application/json');
+        return res.status(400).json({
+            error: `ERROR: Cart id# provided does not exist`,
+            message: `Failed to update cart due to invalid argument: The Cart id provided (id#${cid}) does not exist in our database. Please verify and try again`
+        })
+    }
+
+
+7. es válido/correcto tener try/catch anidados? (ej. carts.router /endpoint PUT / LINEA 185
+
+8. donde cacho los errores de las validaciones anidadas en el try?
+
+663d204c60f80adeaa82bb64
+663d209960f80adeaa82bb73 cinta anclaje
+663d20ad60f80adeaa82bb79 cuerda beal
+
+localhost:8080/api/carts/664276ff3698faa7996819fd/products/663d205b60f80adeaa82bb67
+664276ff3698faa7996819fd/products/663d205b60f80adeaa82bb67
+prod -663d204c60f80adeaa82bb64
+carts/654276ff3698faa7996819fd/products/663d200860f80adeaa82bb5a
+localhost:8080/api/carts/x/products/663d200860f80adeaa82bb5a
+
+{
+    "title": "Botas de Trekking LaSportiva",
+    "description": "Botas impermeables con tecnología gore-tex para terrenos técnicos. Impermeables, ligeras, cómodas y transpirables a la vez.",
+    "price": 150,
+    "stock": 18,
+    "status": true,
+    "category": "senderismo",
+    "thumbnails": "https://picsum.photos/200"
+}

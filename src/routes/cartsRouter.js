@@ -11,7 +11,13 @@ router.get('/',async(req,res)=>{
     res.setHeader('Content-type', 'application/json');
 
     try{
-        const carts = await cartManager.getCarts()        
+        const carts = await cartManager.getCarts() 
+        if(!carts){
+            return res.status(404).json({
+                error: `ERROR: resource not found`,
+                message: `No carts were found in our database, please try again later`
+            })
+        }             
         res.status(200).json({payload:carts})
     }catch(error){
         return res.status(500).json({
@@ -34,7 +40,7 @@ router.get('/:cid', async(req,res)=>{
         if(!matchingCart){
             return res.status(404).json({
                 error: `ERROR: Cart id# provided was not found`,
-                message: `Failed to update cart due to missing resource: The Cart id provided (id#${cid}) does not exist in our database. Please verify and try again`
+                message: `Resource not found: The Cart id provided (id#${cid}) does not exist in our database. Please verify and try again`
             })
         }        
         return res.status(200).json({payload: matchingCart})
@@ -51,6 +57,12 @@ router.post('/', async(req,res)=>{
     res.setHeader('Content-type', 'application/json')
     try {
         const newCart = await cartManager.createCart()
+        if(!newCart){
+            return res.status(404).json({
+                error: `ERROR: resource not found - new cart not posted`,
+                message: `Resource not found: the new cart could not be created. Please try again`
+            })
+        }
         return res.status(200).json({
             newCart
         })
@@ -88,7 +100,7 @@ router.put('/:cid', async(req,res)=>{
     }
    
 
-    //future improvement:not sure if needed anymore due to regex (test more & decide)
+    //note:not sure if needed anymore due to regex validation(test more & decide)
     if (typeof newCartDetails !== 'object'){
         return res.status(400).json({
             error: 'Invalid format in request body',
@@ -96,7 +108,7 @@ router.put('/:cid', async(req,res)=>{
         });
     }
     
-    //future improvement:not sure if needed due to regex (test more & decide)
+    //note:not sure if needed due to regex validation(test more & decide)
     if (Object.keys(newCartDetails).length === 0) {
         return res.status(400).json({
             error: 'Empty request body',
@@ -123,7 +135,6 @@ router.put('/:cid', async(req,res)=>{
             });
         }
     }
-
 
     const pidArray = newCartDetails.map(cart=>cart.pid)
     try{
@@ -177,8 +188,8 @@ router.put('/:cid/products/:pid', async(req,res)=>{
     }
 
     // future improvement: see if can improve/simplify UX logic (eg. allow for null OR [] OR {} to result in +1 instead of error)
-    let regexValidBodyFormat = /^\{.*\}$/
-    let fullBody = JSON.stringify(req.body)
+    const regexValidBodyFormat = /^\{.*\}$/
+    const fullBody = JSON.stringify(req.body)
     if(!regexValidBodyFormat.test(fullBody)){    
         return res.status(400).json({
             error: 'Invalid format in request body',

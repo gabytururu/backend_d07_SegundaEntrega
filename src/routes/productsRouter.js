@@ -200,10 +200,10 @@ router.delete('/:id', async(req,res)=>{
 })
 
 // future: not working - test & resolve
-router.get("*",(req,res)=>{
-    res.status(404).json({
-        error:`Resource Not Found`,
-        message:`The page you are trying to access does not exist. Please verify and try again.`
-    });
-});
+// router.get("*",(req,res)=>{
+//     res.status(404).json({
+//         error:`Resource Not Found`,
+//         message:`The page you are trying to access does not exist. Please verify and try again.`
+//     });
+// });
 
